@@ -21,10 +21,14 @@ public class MainRestController {
     @Autowired
     private CardService cardService;
 
-    @GetMapping(value = "/allcards")
-    public ResponseEntity<?> getAllCards(){
-        List<Cards> cards = cardService.getAllCards();
+    @GetMapping(value = "/allcards/{keyword}")
+    public ResponseEntity<?> getAllCards(@PathVariable(name = "keyword") String keyword){
 
+        System.out.println(keyword);
+        List<Cards> cards = cardService.getAllCards();
+        if(!keyword.equals("all")){
+            cards = cardService.findAllByNameLike(keyword);
+        }
         return new ResponseEntity<>(cards, HttpStatus.OK);
     }
 
@@ -74,7 +78,6 @@ public class MainRestController {
 
             if(card != null){
                 if(task.getId()==null){
-                    System.out.println("New task");
 
                     task.setAddedDate(new Timestamp(System.currentTimeMillis()));
                     task.setCard(card);
@@ -82,7 +85,6 @@ public class MainRestController {
                     return ResponseEntity.ok(task);
                 }
                 else {
-                    System.out.println("existed task");
                     CardTasks existedTask = cardService.getTask(task.getId());
                     existedTask.setDone(task.isDone());
                     cardService.addCardTask(existedTask);

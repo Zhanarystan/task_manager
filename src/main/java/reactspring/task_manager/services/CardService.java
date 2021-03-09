@@ -11,6 +11,7 @@ public interface CardService {
     Cards addCard(Cards card);
     Cards getCardById(Long id);
     void deleteCard(Cards card);
+    List<Cards> findAllByNameLike(String name);
 
     List<CardTasks> getCardTasksByCard(Cards card);
     CardTasks addCardTask(CardTasks cardTask);

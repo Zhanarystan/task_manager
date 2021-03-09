@@ -35,6 +35,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public List<Cards> findAllByNameLike(String name) {
+        return cardRepository.findAllByNameLike("%"+name+"%");
+    }
+
+    @Override
     public List<CardTasks> getCardTasksByCard(Cards card) {
         return cardTaskRepository.findAllByCard(card);
     }
