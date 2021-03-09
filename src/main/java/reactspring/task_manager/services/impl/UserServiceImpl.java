@@ -3,10 +3,12 @@ package reactspring.task_manager.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import reactspring.task_manager.entities.Users;
 import reactspring.task_manager.repositories.UserRepository;
 import reactspring.task_manager.services.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

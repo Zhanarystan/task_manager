@@ -117,5 +117,10 @@ public class MainRestController {
     }
 
 
+    @GetMapping(value = "/profile")
+    public String profilePage(){
+        return "Hello Profile";
+    }
+
 
 }
